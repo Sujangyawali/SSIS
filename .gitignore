@@ -3,5 +3,6 @@ obj/
 *.user
 *.suo
 .*vshost.*
+.vs
 .log
 .codegpt
