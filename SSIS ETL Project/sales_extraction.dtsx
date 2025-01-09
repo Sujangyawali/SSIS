@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="sales_extraction"
   DTS:PackageType="5"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{E519E4D2-3343-4B94-8F8C-A258FB60FCF0}">
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{0CB883A6-13CD-41AB-90E6-34EFE17B929D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1561,11 +1561,119 @@
               </outputs>
             </component>
             <component
-              refId="Package\Stage DB to Target DB\OLE DB Destination"
+              refId="Package\Stage DB to Target DB\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input].Columns[Conv TOTALAMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="Conv TOTALAMOUNT"
+                      cachedPrecision="18"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TOTALAMOUNT]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input].Columns[TRANSACTIONSTATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TRANSACTIONSTATUS"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONSTATUS]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[UPPER](#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONSTATUS]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER(TRANSACTIONSTATUS)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output].Columns[TAX_AMOUNT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output].Columns[TAX_AMOUNT]"
+                      name="TAX_AMOUNT"
+                      precision="22"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TOTALAMOUNT]} * 0.01</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Conv TOTALAMOUNT] * 0.01</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage DB to Target DB\OLE DB Destination 1"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE DB Destination"
+              name="OLE DB Destination 1"
               usesDispositions="true"
               version="4">
               <properties>
@@ -1618,7 +1726,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Stage DB to Target DB\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\Stage DB to Target DB\OLE DB Destination 1.Connections[OleDbConnection]"
                   connectionManagerID="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}:external"
                   connectionManagerRefId="Project.ConnectionManagers[SSIS-DB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -1626,120 +1734,139 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Conv PRODUCTCATEGORY]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Conv PRODUCTCATEGORY"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CAT]"
-                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCATEGORY]" />
-                    <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANSACTIONID]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="TRANSACTIONID"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONID]" />
-                    <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Conv TRANSACTIONDATE]"
-                      cachedDataType="date"
-                      cachedName="Conv TRANSACTIONDATE"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DT]"
-                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONDATE]" />
-                    <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Conv PRODUCTCODE]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[Conv TRANSACTIONID]"
                       cachedDataType="i8"
-                      cachedName="Conv PRODUCTCODE"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CDE]"
-                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCODE]" />
+                      cachedName="Conv TRANSACTIONID"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONID]" />
                     <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Conv TEMSSOLD]"
-                      cachedDataType="i8"
-                      cachedName="Conv TEMSSOLD"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[F_QTY]"
-                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TEMSSOLD]" />
-                    <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Conv TOTALAMOUNT]"
-                      cachedDataType="numeric"
-                      cachedName="Conv TOTALAMOUNT"
-                      cachedPrecision="18"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[F_SLS]"
-                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TOTALAMOUNT]" />
-                    <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CUSTOMERFULLNAME]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CUSTOMERFULLNAME]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
                       cachedName="CUSTOMERFULLNAME"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUS_FUL_NAME]"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUSTOMERFULLNAME]" />
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CUS_FUL_NAME]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[CUSTOMERFULLNAME]" />
                     <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SALEREGION]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TRANSACTIONDATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TRANSACTIONDATE"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DT]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONDATE]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[PRODUCTCODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PRODUCTCODE"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CDE]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCODE]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[Conv TEMSSOLD]"
+                      cachedDataType="i8"
+                      cachedName="Conv TEMSSOLD"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_QTY]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TEMSSOLD]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[Conv TOTALAMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="Conv TOTALAMOUNT"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_SLS]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TOTALAMOUNT]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TAX_AMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="TAX_AMOUNT"
+                      cachedPrecision="22"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_TAX]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TAX_AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[PRODUCTCATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PRODUCTCATEGORY"
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CAT]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCATEGORY]" />
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[SALEREGION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="SALEREGION"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SLS_RGN]"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[SALEREGION]" />
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SLS_RGN]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[SALEREGION]" />
                     <inputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANSACTIONSTATUS]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TRANSACTIONSTATUS]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="20"
                       cachedName="TRANSACTIONSTATUS"
-                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_STTUS]"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONSTATUS]" />
+                      externalMetadataColumnId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_STTUS]"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONSTATUS]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_ID]"
                       dataType="i4"
                       name="TXN_ID" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUS_FUL_NAME]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CUS_FUL_NAME]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="CUS_FUL_NAME" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DT]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_DT]"
                       dataType="dbDate"
                       name="TXN_DT" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CDE]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CDE]"
                       dataType="i4"
                       name="PRD_CDE" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[F_QTY]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_QTY]"
                       dataType="i4"
                       name="F_QTY" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[F_SLS]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_SLS]"
                       dataType="numeric"
                       name="F_SLS"
                       precision="10"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CAT]"
-                      dataType="wstr"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[F_TAX]"
+                      dataType="numeric"
+                      name="F_TAX"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRD_CAT]"
+                      codePage="1252"
+                      dataType="str"
                       length="100"
                       name="PRD_CAT" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SLS_RGN]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SLS_RGN]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="SLS_RGN" />
                     <externalMetadataColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TXN_STTUS]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TXN_STTUS]"
                       codePage="1252"
                       dataType="str"
                       length="20"
@@ -1749,22 +1876,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Stage DB to Target DB\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Stage DB to Target DB\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Stage DB to Target DB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Stage DB to Target DB\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Stage DB to Target DB\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2076,18 +2203,668 @@
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Stage DB to Target DB\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[TRANSACTIONID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TRANSACTIONID"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[CUSTOMERFULLNAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CUSTOMERFULLNAME"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUSTOMERFULLNAME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[TRANSACTIONDATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TRANSACTIONDATE"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONDATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[PRODUCTCODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PRODUCTCODE"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCTCODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[ITEMSSOLD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ITEMSSOLD"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[ITEMSSOLD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[TOTALAMOUNT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TOTALAMOUNT"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTALAMOUNT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[PRODUCTCATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PRODUCTCATEGORY"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCTCATEGORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[SALEREGION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SALEREGION"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[SALEREGION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[TRANSACTIONSTATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TRANSACTIONSTATUS"
+                      lineageId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONSTATUS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv PRODUCTCATEGORY]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Conv PRODUCTCATEGORY"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCATEGORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv TRANSACTIONID]"
+                      cachedDataType="i8"
+                      cachedName="Conv TRANSACTIONID"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv CUSTOMERFULLNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Conv CUSTOMERFULLNAME"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv CUSTOMERFULLNAME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv TRANSACTIONDATE]"
+                      cachedDataType="date"
+                      cachedName="Conv TRANSACTIONDATE"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONDATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv PRODUCTCODE]"
+                      cachedDataType="i8"
+                      cachedName="Conv PRODUCTCODE"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv TEMSSOLD]"
+                      cachedDataType="i8"
+                      cachedName="Conv TEMSSOLD"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TEMSSOLD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv TOTALAMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="Conv TOTALAMOUNT"
+                      cachedPrecision="18"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TOTALAMOUNT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv SALEREGION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Conv SALEREGION"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv SALEREGION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[Conv TRANSACTIONSTATUS]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Conv TRANSACTIONSTATUS"
+                      lineageId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONSTATUS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input].Columns[TAX_AMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="TAX_AMOUNT"
+                      cachedPrecision="22"
+                      cachedScale="2"
+                      lineageId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output].Columns[TAX_AMOUNT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONID]"
+                      name="TRANSACTIONID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[CUSTOMERFULLNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[CUSTOMERFULLNAME]"
+                      name="CUSTOMERFULLNAME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUSTOMERFULLNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONDATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONDATE]"
+                      name="TRANSACTIONDATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONDATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCODE]"
+                      name="PRODUCTCODE"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCTCODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[ITEMSSOLD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[ITEMSSOLD]"
+                      name="ITEMSSOLD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[ITEMSSOLD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TOTALAMOUNT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TOTALAMOUNT]"
+                      name="TOTALAMOUNT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTALAMOUNT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[PRODUCTCATEGORY]"
+                      name="PRODUCTCATEGORY">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCTCATEGORY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[SALEREGION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[SALEREGION]"
+                      name="SALEREGION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[SALEREGION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TRANSACTIONSTATUS]"
+                      name="TRANSACTIONSTATUS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTIONSTATUS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv PRODUCTCATEGORY]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv PRODUCTCATEGORY]"
+                      name="Conv PRODUCTCATEGORY">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCATEGORY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONID]"
+                      dataType="i8"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONID]"
+                      name="Conv TRANSACTIONID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv CUSTOMERFULLNAME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv CUSTOMERFULLNAME]"
+                      name="Conv CUSTOMERFULLNAME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv CUSTOMERFULLNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONDATE]"
+                      dataType="date"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONDATE]"
+                      name="Conv TRANSACTIONDATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONDATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv PRODUCTCODE]"
+                      dataType="i8"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv PRODUCTCODE]"
+                      name="Conv PRODUCTCODE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv PRODUCTCODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TEMSSOLD]"
+                      dataType="i8"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TEMSSOLD]"
+                      name="Conv TEMSSOLD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TEMSSOLD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TOTALAMOUNT]"
+                      dataType="numeric"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TOTALAMOUNT]"
+                      name="Conv TOTALAMOUNT"
+                      precision="18">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TOTALAMOUNT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv SALEREGION]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv SALEREGION]"
+                      name="Conv SALEREGION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv SALEREGION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONSTATUS]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[Conv TRANSACTIONSTATUS]"
+                      name="Conv TRANSACTIONSTATUS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output].Columns[Conv TRANSACTIONSTATUS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TAX_AMOUNT]"
+                      dataType="numeric"
+                      lineageId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output].Columns[TAX_AMOUNT]"
+                      name="TAX_AMOUNT"
+                      precision="22"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output].Columns[TAX_AMOUNT]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
               refId="Package\Stage DB to Target DB.Paths[Data Conversion Output]"
-              endId="Package\Stage DB to Target DB\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Stage DB to Target DB\Derived Column.Inputs[Derived Column Input]"
               name="Data Conversion Output"
               startId="Package\Stage DB to Target DB\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Stage DB to Target DB.Paths[Derived Column Output]"
+              endId="Package\Stage DB to Target DB\Sort.Inputs[Sort Input]"
+              name="Derived Column Output"
+              startId="Package\Stage DB to Target DB\Derived Column.Outputs[Derived Column Output]" />
             <path
               refId="Package\Stage DB to Target DB.Paths[OLE DB Source Output]"
               endId="Package\Stage DB to Target DB\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Stage DB to Target DB\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Stage DB to Target DB.Paths[Sort Output]"
+              endId="Package\Stage DB to Target DB\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Stage DB to Target DB\Sort.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2345,11 +3122,7 @@
     design-time-name="Package\Stage DB to Target DB">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Stage DB to Target DB\OLE DB Destination"
-          TopLeft="528.499985307456,434.499988108874" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="158.666666666667,42.6666666666667"
           Id="Package\Stage DB to Target DB\Data Conversion"
@@ -2380,32 +3153,88 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Stage DB to Target DB\Derived Column"
+          TopLeft="471.928557527917,364.785703578166" />
         <EdgeLayout
           Id="Package\Stage DB to Target DB.Paths[Data Conversion Output]"
-          TopLeft="544.833321412405,261.166662106911">
+          TopLeft="547.380939470161,261.166662106912">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="70.9999972283841,173.333326001962"
+              EndConnector="0,103.619041471254"
               Start="0,0"
-              End="70.9999972283841,165.833326001962">
+              End="0,96.1190414712542">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,82.6666630009811" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,82.6666630009811"
-                    Point2="0,86.6666630009811"
-                    Point3="4,86.6666630009811" />
+                    End="0,96.1190414712542" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\Stage DB to Target DB\OLE DB Destination 1"
+          TopLeft="619.285695829562,557.857126231705" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Stage DB to Target DB\Sort"
+          TopLeft="501.928558421987,456.214274070093" />
+        <EdgeLayout
+          Id="Package\Stage DB to Target DB.Paths[Derived Column Output]"
+          TopLeft="550.595224641619,407.452370244833">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.7619038252604"
+              Start="0,0"
+              End="0,41.2619038252604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="66.9999972283841,86.6666630009811" />
-                  <mssgle:CubicBezierSegment
-                    Point1="66.9999972283841,86.6666630009811"
-                    Point2="70.9999972283841,86.6666630009811"
-                    Point3="70.9999972283841,90.6666630009811" />
+                    End="0,41.2619038252604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage DB to Target DB.Paths[Sort Output]"
+          TopLeft="551.26189175532,498.88094073676">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="160.023804074242,58.9761854949453"
+              Start="0,0"
+              End="160.023804074242,51.4761854949453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="70.9999972283841,165.833326001962" />
+                    End="0,25.4880927474726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.4880927474726"
+                    Point2="0,29.4880927474726"
+                    Point3="4,29.4880927474726" />
+                  <mssgle:LineSegment
+                    End="156.023804074242,29.4880927474726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="156.023804074242,29.4880927474726"
+                    Point2="160.023804074242,29.4880927474726"
+                    Point3="160.023804074242,33.4880927474726" />
+                  <mssgle:LineSegment
+                    End="160.023804074242,51.4761854949453" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2417,19 +3246,6 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Stage DB to Target DB\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Stage DB to Target DB\OLE DB Source">
     <Properties>
@@ -2511,5 +3327,18 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage DB to Target DB\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
