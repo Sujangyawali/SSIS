@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{87B969BB-92C5-4261-B146-4D032CBECA4F}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{684EE0E8-95E4-41A1-8868-AB452CEE3FBF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -891,7 +891,7 @@
         <NodeLayout
           Size="244,42.6666666666667"
           Id="Package\Load Data From SOURCE to SSIS"
-          TopLeft="260.227261094208,259.999997145251" />
+          TopLeft="243.352261848579,175.842103332446" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

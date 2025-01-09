@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LOCAL_MYSQL_SSIS.root 1"
+  DTS:DTSID="{467ACAB2-2BC6-467A-9E91-7894A13870F2}"
+  DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="uid=root;Dsn=LOCAL_MYSQL_SSIS;">
+      <DTS:Password
+        DTS:Name="pwd"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6W2ytZ7VTUWnM5beagw+mgAAAAACAAAAAAAQZgAAAAEAACAAAAAFbfRaI4Ap9qsRLi0qKlmSPplelSREdkEx5QQEMa50FAAAAAAOgAAAAAIAACAAAACbcMmf6Yvm5vZX4CuY+Le5WOogptmqiqA1vaIlR5yEEnAAAADk+8HwNX6ZJ+wIHJkAAZ8dwia4Ikrpg+s5bvM8gbP3H+uXtO4kFnptbXBuYLWJPrqq2F5YB8rcK+YJNrciVxG3wo/Eyrw4kuBXbX7jsJ79xc4xOWieQ2S5F1kYmUrK3Idn5WLfJdneYn1c8JILNfGFQAAAAAhCbpOfbOqtsIrdkZGrqBU9hcqnQejo1vXvoDVpDJvlrDcOt3fgEbuPDFW4G1hxwcJ4L3jjHAJd8ovVQxODYJY=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
