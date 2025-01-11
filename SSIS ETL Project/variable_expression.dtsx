@@ -5,23 +5,33 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LIS-LAP-187"
   DTS:CreatorName="PDC\sujan.gyawali"
-  DTS:DTSID="{45891B0A-F2A5-48A1-A959-38140E88D67E}"
+  DTS:DTSID="{86F71E2A-D8DA-4137-8B1A-A15599B17512}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="1033"
-  DTS:ObjectName="master"
+  DTS:ObjectName="variable_expression"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{FBC35A50-B9B3-4725-B233-E89B04F42EF5}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{DD647125-53AB-46BC-8762-A59F17BBF126}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D0547C3E-FF9C-45BC-9594-42E59E2DC07C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="product_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Execute Package - Datamart"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{449c6da5-99bc-4b29-8f4f-1ea0a6b65f74}"
+      DTS:DTSID="{253D8FE6-56C4-4505-8D79-B0EDABA04B12}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute Package - Datamart"
@@ -38,7 +48,7 @@
       DTS:refId="Package\Execute Package - Product"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{e28e9b0b-2668-4b19-85f2-b2022ba94bb9}"
+      DTS:DTSID="{081897ED-2C85-47E2-BD93-3CFED9DEA9E3}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute Package - Product"
@@ -55,7 +65,7 @@
       DTS:refId="Package\Execute Package - Sales"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{D4F077C2-9E7F-4080-B70F-31115836F025}"
+      DTS:DTSID="{BB0AA074-1F97-4376-ABB2-A019E69F2ED9}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute Package - Sales"
@@ -69,37 +79,25 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Update  Success Log on DB"
+      DTS:refId="Package\Get Product Count"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{619398A1-8F32-421F-BF60-AD334CB9643F}"
+      DTS:DTSID="{17624F12-F366-448A-A617-E884E7677E99}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Update  Success Log on DB"
+      DTS:ObjectName="Get Product Count"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
-          SQLTask:SqlStatementSource="SELECT 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Update Failure Log on DB"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{42778a61-e5c6-47f1-aa56-06270dbfd059}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Update Failure Log on DB"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
-          SQLTask:SqlStatementSource="SELECT 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="select count(*) as cnt from RDW_TGT.RDW_TGT_PRODUCT"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CNT"
+            SQLTask:DtsVariableName="User::product_count" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -107,15 +105,15 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{436C8A7B-308E-4558-86FE-6351D23DE82F}"
+      DTS:DTSID="{35497A57-F6F9-4D7E-B07D-907D621BFA85}"
       DTS:From="Package\Execute Package - Product"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Execute Package - Sales" />
+      DTS:To="Package\Get Product Count" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{021E8CEE-247D-4EC0-9EC5-D3AC9A5281E8}"
+      DTS:DTSID="{8B83DDE4-AF69-4BE3-BCF4-23C3CC604FD3}"
       DTS:From="Package\Execute Package - Sales"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -123,20 +121,13 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{449EEF80-3BC2-4930-BE7B-5D62BC965CA1}"
-      DTS:From="Package\Execute Package - Product"
+      DTS:DTSID="{63D56E92-43CD-4233-863A-9E82A8783CCC}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::product_count]&gt;0"
+      DTS:From="Package\Get Product Count"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Update Failure Log on DB"
-      DTS:Value="1" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{EF4DED98-75CA-4262-B6D6-3A7D9AC5B43A}"
-      DTS:From="Package\Execute Package - Product"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 3"
-      DTS:To="Package\Update  Success Log on DB" />
+      DTS:To="Package\Execute Package - Sales" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -149,79 +140,33 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="208,42.6666666666667"
-          Id="Package\Execute Package - Product"
-          TopLeft="480.624978514389,121.105261828183" />
-        <NodeLayout
-          Size="198.666666666667,42.6666666666667"
-          Id="Package\Execute Package - Sales"
-          TopLeft="480.624978514389,257.263155070038" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="551.291645181056,163.77192849485">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="28.6666666666663,93.4912265751888"
-              Start="0,0"
-              End="28.6666666666663,85.9912265751888">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.8246947212596" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.8246947212596"
-                    Point2="0,37.8246947212596"
-                    Point3="4,37.8246947212596" />
-                  <mssgle:LineSegment
-                    End="24.6666666666663,37.8246947212596" />
-                  <mssgle:CubicBezierSegment
-                    Point1="24.6666666666663,37.8246947212596"
-                    Point2="28.6666666666663,37.8246947212596"
-                    Point3="28.6666666666663,41.8246947212596" />
-                  <mssgle:LineSegment
-                    End="28.6666666666663,85.9912265751888" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="216,42.6666666666667"
           Id="Package\Execute Package - Datamart"
-          TopLeft="485.624978290872,379.771926782001" />
+          TopLeft="476.249978709967,316.140348533295" />
+        <NodeLayout
+          Size="208,42.6666666666667"
+          Id="Package\Execute Package - Product"
+          TopLeft="474.374978793786,20.5263155640989" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Execute Package - Sales"
+          TopLeft="479.374978570268,230.57894483671" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="579.958311847722,299.929821736705">
+          TopLeft="581.479145306784,273.245611503376">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="13.6666664431498,79.8421050452956"
+              EndConnector="0,42.8947370299185"
               Start="0,0"
-              End="13.6666664431498,72.3421050452956">
+              End="0,35.3947370299185">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.9210525226478" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.9210525226478"
-                    Point2="0,39.9210525226478"
-                    Point3="4,39.9210525226478" />
-                  <mssgle:LineSegment
-                    End="9.66666644314978,39.9210525226478" />
-                  <mssgle:CubicBezierSegment
-                    Point1="9.66666644314978,39.9210525226478"
-                    Point2="13.6666664431498,39.9210525226478"
-                    Point3="13.6666664431498,43.9210525226478" />
-                  <mssgle:LineSegment
-                    End="13.6666664431498,72.3421050452956" />
+                    End="0,35.3947370299185" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -231,23 +176,23 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="213.333333333334,42.6666666666667"
-          Id="Package\Update  Success Log on DB"
-          TopLeft="851.874961918222,119.736840790576" />
+          Size="168,42.6666666666667"
+          Id="Package\Get Product Count"
+          TopLeft="490.624978067353,97.8421041888709" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="688.624978514389,141.754384642713">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="576.49997843057,63.1929822307656">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="163.249983403833,0"
+              EndConnector="0,34.6491219581053"
               Start="0,0"
-              End="155.749983403833,0">
+              End="0,27.1491219581053">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="155.749983403833,0" />
+                    End="0,27.1491219581053" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -256,43 +201,27 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\Update Failure Log on DB"
-          TopLeft="699.999968707562,257.947365588842" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="617.958311847722,163.77192849485">
+          TopLeft="576.666644985478,140.508770855538">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="183.374990193173,94.1754370939919"
+              EndConnector="0,90.070173981172"
               Start="0,0"
-              End="183.374990193173,86.6754370939919">
+              End="0,82.570173981172">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.1015127174165" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,34.1015127174165"
-                    Point2="0,38.1015127174165"
-                    Point3="4,38.1015127174165" />
-                  <mssgle:LineSegment
-                    End="179.374990193173,38.1015127174165" />
-                  <mssgle:CubicBezierSegment
-                    Point1="179.374990193173,38.1015127174165"
-                    Point2="183.374990193173,38.1015127174165"
-                    Point3="183.374990193173,42.1015127174165" />
-                  <mssgle:LineSegment
-                    End="183.374990193173,86.6754370939919" />
+                    End="0,82.570173981172" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="76.4461474403365,43.1015127174165,30.4826953125,9.7490234375"
+              BoundingBox="-8,33.285086990586,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
