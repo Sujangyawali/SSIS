@@ -1,5 +1,5 @@
 SaleID,CustomerName,SaleDate,ProductID,Quantity,Amount,Category,Region,Status
-1,John Doe,2025-01-01,101,2,500.00,Electronics,North,Completed
+1,SG,2025-01-01,101,2,500.00,Electronics,North,Completed
 2,Jane Smith,2025-01-02,102,1,250.50,Electronics,South,Completed
 3,Paul White,2025-01-03,103,3,450.75,Furniture,East,Completed
 4,Linda Black,2025-01-04,104,2,850.00,Furniture,West,Completed
