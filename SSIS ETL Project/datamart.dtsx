@@ -1,54 +1,122 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="1/10/2025 7:24:17 PM"
+  DTS:CreationDate="1/11/2025 9:59:18 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LIS-LAP-187"
   DTS:CreatorName="PDC\sujan.gyawali"
-  DTS:DTSID="{B7C0AB6A-075B-4AC1-AC20-A771159404B7}"
+  DTS:DTSID="{2ED5CCEE-B30B-4488-8097-945262C536A8}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="1033"
-  DTS:ObjectName="datamart"
+  DTS:ObjectName="master"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{F239984B-61EA-4BE7-872F-C4B46EA6D024}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{3FFA336F-1F24-410E-A83B-BA439EE24005}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Procedure Load Yr Sls Agg"
+      DTS:refId="Package\Procedure - Load Item Sales DM"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{EA2E149F-4B81-404D-8175-1854BDE98C7A}"
+      DTS:DTSID="{5f7c5e3e-56ea-48c7-8504-b98aafafd5d8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Procedure Load Yr Sls Agg"
+      DTS:ObjectName="Procedure - Load Item Sales DM"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
-          SQLTask:SqlStatementSource="EXEC GetYearlySales" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="EXEC RDW_SP_DM_SLS_ITM_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\TRUNCATE DM Yearly Sales Agg"
+      DTS:refId="Package\Procedure - Load Year Item Sales DM"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{01029180-A474-44A0-8D4A-97F5696B9342}"
+      DTS:DTSID="{ad8af0f3-c7a7-4ec1-899b-29bf47789b1b}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="TRUNCATE DM Yearly Sales Agg"
+      DTS:ObjectName="Procedure - Load Year Item Sales DM"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
-          SQLTask:SqlStatementSource="truncate table RDW_DM.RDW_DM_SLS_YR_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="EXEC RDW_SP_DM_SLS_YR_ITM_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Procedure - Load Year Sales DM"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B6EA976E-3394-4C20-9E0C-83F10F1D3860}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Procedure - Load Year Sales DM"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
+          SQLTask:SqlStatementSource="EXEC RDW_SP_DM_SLS_YR_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Datamart - Item Sales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5fdce3c2-24f3-4154-9c3d-5168fbad9e1d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Datamart - Item Sales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE RDW_DM.RDW_DM_SLS_ITM_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Datamart - Year Item Sales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f1047fcb-c54f-4ccb-a694-93de6bdf5860}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Datamart - Year Item Sales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE RDW_DM.RDW_DM_SLS_YR_ITM_A" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Datamart - Year Sales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C0968F57-C9C1-4A12-9A50-78C48DC139D6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Datamart - Year Sales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE RDW_DM.RDW_DM_SLS_YR_A " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -56,11 +124,27 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{D3FD793C-0496-40F1-9F30-DD07DC0D1D92}"
-      DTS:From="Package\TRUNCATE DM Yearly Sales Agg"
+      DTS:DTSID="{0092692A-958A-47A9-B6E2-6106220B49E7}"
+      DTS:From="Package\Truncate Datamart - Year Sales"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Procedure Load Yr Sls Agg" />
+      DTS:To="Package\Procedure - Load Year Sales DM" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB49DE03-1265-422A-AF23-A3DD3C468C40}"
+      DTS:From="Package\Truncate Datamart - Item Sales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Procedure - Load Item Sales DM" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C20EE649-32B9-41BF-8D88-0916233BE032}"
+      DTS:From="Package\Truncate Datamart - Year Item Sales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Procedure - Load Year Item Sales DM" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -73,41 +157,101 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="241.333333333334,42.6666666666667"
-          Id="Package\TRUNCATE DM Yearly Sales Agg"
-          TopLeft="303.124986449257,60.8947361734931" />
+          Size="229.333333333334,42.6666666666667"
+          Id="Package\Truncate Datamart - Year Sales"
+          TopLeft="249.374988852069,95.1052621136577" />
         <NodeLayout
-          Size="208,42.6666666666667"
-          Id="Package\Procedure Load Yr Sls Agg"
-          TopLeft="386.87498270534,166.2631560692" />
+          Size="228,42.6666666666667"
+          Id="Package\Truncate Datamart - Item Sales"
+          TopLeft="523.749976586551,96.508771997437" />
+        <NodeLayout
+          Size="253.333333333334,42.6666666666667"
+          Id="Package\Truncate Datamart - Year Item Sales"
+          TopLeft="797.499964348973,97.1578936700676" />
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Procedure - Load Year Sales DM"
+          TopLeft="249.374988852069,203.894734603381" />
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Procedure - Load Item Sales DM"
+          TopLeft="530.624976279215,205.263155640988" />
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Procedure - Load Year Item Sales DM"
+          TopLeft="811.2499637343,199.824560336734" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="423.791653115924,103.56140284016">
+          TopLeft="365.708322185403,137.771928780324">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="67.0833295894166,62.7017532290405"
+              EndConnector="0,66.122805823057"
               Start="0,0"
-              End="67.0833295894166,55.2017532290405">
+              End="0,58.622805823057">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.3508766145202" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.3508766145202"
-                    Point2="0,31.3508766145202"
-                    Point3="4,31.3508766145202" />
+                    End="0,58.622805823057" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="637.749976586551,139.175438664104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.8749996926637,66.0877169768843"
+              Start="0,0"
+              End="10.8749996926637,58.5877169768843">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="63.0833295894166,31.3508766145202" />
+                    End="0,29.0438584884421" />
                   <mssgle:CubicBezierSegment
-                    Point1="63.0833295894166,31.3508766145202"
-                    Point2="67.0833295894166,31.3508766145202"
-                    Point3="67.0833295894166,35.3508766145202" />
+                    Point1="0,29.0438584884421"
+                    Point2="0,33.0438584884421"
+                    Point3="4,33.0438584884421" />
                   <mssgle:LineSegment
-                    End="67.0833295894166,55.2017532290405" />
+                    End="6.87499969266366,33.0438584884421" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.87499969266366,33.0438584884421"
+                    Point2="10.8749996926637,33.0438584884421"
+                    Point3="10.8749996926637,37.0438584884421" />
+                  <mssgle:LineSegment
+                    End="10.8749996926637,58.5877169768843" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="926.70829737497,139.824560336734">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

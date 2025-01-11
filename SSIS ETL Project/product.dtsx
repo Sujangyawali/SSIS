@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="product"
   DTS:PackageType="5"
-  DTS:VersionBuild="119"
-  DTS:VersionGUID="{64D7A60B-9A35-4C83-8A8E-8773B9DE3173}">
+  DTS:VersionBuild="120"
+  DTS:VersionGUID="{0C927CBC-3CE2-41FA-B8D0-FAA0AD58E079}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -332,169 +332,6 @@
           version="1">
           <components>
             <component
-              refId="Package\Load to Temp From File and MySQL\ADO NET Source"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="ADO NET Source"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement used by the component to extract data."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
-from RDW_STG_PRODUCT_ELECTRONICS</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
-                  name="AllowImplicitStringConversion">true</property>
-                <property
-                  dataType="System.String"
-                  description="The Source database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">rdw_stg_product_electronics</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the mode to retrieve external column information"
-                  name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load to Temp From File and MySQL\ADO NET Source.Connections[IDbConnection]"
-                  connectionManagerID="{467ACAB2-2BC6-467A-9E91-7894A13870F2}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LOCAL_MYSQL_SSIS.root 1]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output]"
-                  name="ADO NET Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductCode]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductCode]"
-                      length="200"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductCode]"
-                      name="ProductCode"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductName]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
-                      length="1020"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[ProductName]"
-                      name="ProductName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[Category]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Category]"
-                      length="400"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[Category]"
-                      name="Category"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[Price]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Price]"
-                      length="200"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].Columns[Price]"
-                      name="Price"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductCode]"
-                      dataType="wstr"
-                      length="200"
-                      name="ProductCode" />
-                    <externalMetadataColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
-                      dataType="wstr"
-                      length="1020"
-                      name="ProductName" />
-                    <externalMetadataColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Category]"
-                      dataType="wstr"
-                      length="400"
-                      name="Category" />
-                    <externalMetadataColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[Price]"
-                      dataType="wstr"
-                      length="200"
-                      name="Price" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output]"
-                  isErrorOut="true"
-                  name="ADO NET Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductCode]"
-                      dataType="wstr"
-                      length="200"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductCode]"
-                      name="ProductCode" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductName]"
-                      dataType="wstr"
-                      length="1020"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ProductName]"
-                      name="ProductName" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Category]"
-                      dataType="wstr"
-                      length="400"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Category]"
-                      name="Category" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Price]"
-                      dataType="wstr"
-                      length="200"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[Price]"
-                      name="Price" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Load to Temp From File and MySQL\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -644,6 +481,169 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
                       refId="Package\Load to Temp From File and MySQL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load to Temp From File and MySQL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Product Electonics - MySQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from RDW_STG_PRODUCT_ELECTRONICS</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">rdw_stg_product_electronics</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Connections[IDbConnection]"
+                  connectionManagerID="{467ACAB2-2BC6-467A-9E91-7894A13870F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LOCAL_MYSQL_SSIS.root 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[ProductCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[ProductCode]"
+                      length="200"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[ProductCode]"
+                      name="ProductCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
+                      length="1020"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[Category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[Category]"
+                      length="400"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[Price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[Price]"
+                      length="200"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[ProductCode]"
+                      dataType="wstr"
+                      length="200"
+                      name="ProductCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="1020"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[Category]"
+                      dataType="wstr"
+                      length="400"
+                      name="Category" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="200"
+                      name="Price" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ProductCode]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ProductCode]"
+                      name="ProductCode" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="1020"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[Category]"
+                      dataType="wstr"
+                      length="400"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[Category]"
+                      name="Category" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[Price]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1206,7 +1206,7 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
               refId="Package\Load to Temp From File and MySQL.Paths[ADO NET Source Output]"
               endId="Package\Load to Temp From File and MySQL\Union All.Inputs[Union All Input 4]"
               name="ADO NET Source Output"
-              startId="Package\Load to Temp From File and MySQL\ADO NET Source.Outputs[ADO NET Source Output]" />
+              startId="Package\Load to Temp From File and MySQL\Product Electonics - MySQL.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Load to Temp From File and MySQL.Paths[Flat File Source Output]"
               endId="Package\Load to Temp From File and MySQL\Union All.Inputs[Union All Input 1]"
@@ -1275,6 +1275,10 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="316.874985834584,269.578944408497" />
+        <NodeLayout
           Size="252,42.6666666666667"
           Id="Package\Load to Temp From File and MySQL"
           TopLeft="291.874986952171,184.736840076889" />
@@ -1282,44 +1286,6 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
           Size="152,42.6666666666667"
           Id="Package\Truncate Temp"
           TopLeft="301.249986533076,48.5789468350334" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="377.249986533076,91.2456135017">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="40.625000419095,93.491226575189"
-              Start="0,0"
-              End="40.625000419095,85.991226575189">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.7456132875945" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,42.7456132875945"
-                    Point2="0,46.7456132875945"
-                    Point3="4,46.7456132875945" />
-                  <mssgle:LineSegment
-                    End="36.625000419095,46.7456132875945" />
-                  <mssgle:CubicBezierSegment
-                    Point1="36.625000419095,46.7456132875945"
-                    Point2="40.625000419095,46.7456132875945"
-                    Point3="40.625000419095,50.7456132875945" />
-                  <mssgle:LineSegment
-                    End="40.625000419095,85.991226575189" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="168,42.6666666666667"
-          Id="Package\Execute SQL Task"
-          TopLeft="316.874985834584,269.578944408497" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="417.874986952171,227.403506743556">
@@ -1354,6 +1320,40 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="377.249986533076,91.2456135017">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.625000419095,93.491226575189"
+              Start="0,0"
+              End="40.625000419095,85.991226575189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.7456132875945" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.7456132875945"
+                    Point2="0,46.7456132875945"
+                    Point3="4,46.7456132875945" />
+                  <mssgle:LineSegment
+                    End="36.625000419095,46.7456132875945" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.625000419095,46.7456132875945"
+                    Point2="40.625000419095,46.7456132875945"
+                    Point3="40.625000419095,50.7456132875945" />
+                  <mssgle:LineSegment
+                    End="40.625000419095,85.991226575189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1363,21 +1363,25 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="158.666666666667,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\Product-Clothing"
-          TopLeft="171.874992316589,123.842103903396" />
-        <NodeLayout
-          Size="162.666666666667,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\Product-Furniture"
-          TopLeft="358.124983990566,127.298245343585" />
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\Union All"
+          TopLeft="422.499981112779,317.473680724728" />
         <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\Load to Temp From File and MySQL\OLE DB Destination"
           TopLeft="387.276768401665,410.037589482831" />
         <NodeLayout
-          Size="122.666666666667,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\Union All"
-          TopLeft="422.499981112779,317.473680724728" />
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\Product-Furniture"
+          TopLeft="358.124983990566,127.298245343585" />
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\Product Electonics - MySQL"
+          TopLeft="583.124973932282,129.999998572626" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\Product-Clothing"
+          TopLeft="171.874992316589,123.842103903396" />
         <EdgeLayout
           Id="Package\Load to Temp From File and MySQL.Paths[Union All Output 1]"
           TopLeft="483.833314446112,360.140347391395">
@@ -1480,36 +1484,32 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="164,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\ADO NET Source"
-          TopLeft="719.999967813493,132.736840647839" />
         <EdgeLayout
           Id="Package\Load to Temp From File and MySQL.Paths[ADO NET Source Output]"
-          TopLeft="801.999967813493,175.403507314506">
+          TopLeft="689.791640598949,172.666665239292">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-289.499986700714,142.070173410223"
+              EndConnector="-177.29165948617,144.807015485436"
               Start="0,0"
-              End="-289.499986700714,134.570173410223">
+              End="-177.29165948617,137.307015485436">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,88.6982691754643" />
+                    End="0,90.4840101039722" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,88.6982691754643"
-                    Point2="0,92.6982691754643"
-                    Point3="-4,92.6982691754643" />
+                    Point1="0,90.4840101039722"
+                    Point2="0,94.4840101039722"
+                    Point3="-4,94.4840101039722" />
                   <mssgle:LineSegment
-                    End="-285.499986700714,92.6982691754643" />
+                    End="-173.29165948617,94.4840101039722" />
                   <mssgle:CubicBezierSegment
-                    Point1="-285.499986700714,92.6982691754643"
-                    Point2="-289.499986700714,92.6982691754643"
-                    Point3="-289.499986700714,96.6982691754643" />
+                    Point1="-173.29165948617,94.4840101039722"
+                    Point2="-177.29165948617,94.4840101039722"
+                    Point3="-177.29165948617,98.4840101039722" />
                   <mssgle:LineSegment
-                    End="-289.499986700714,134.570173410223" />
+                    End="-177.29165948617,137.307015485436" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1535,7 +1535,7 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to Temp From File and MySQL\ADO NET Source">
+    design-time-name="Package\Load to Temp From File and MySQL\Product Electonics - MySQL">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
