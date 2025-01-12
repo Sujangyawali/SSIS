@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Multicast_cn_split"
   DTS:PackageType="5"
-  DTS:VersionBuild="96"
-  DTS:VersionGUID="{1E63ABB9-1716-4E42-A673-423A930BBE8E}">
+  DTS:VersionBuild="97"
+  DTS:VersionGUID="{1CD29F4D-BA2B-40B7-8FF9-70A7B347190B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3743,7 +3743,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SSIS Target"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3777,7 +3777,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate WAREHOUSE Target"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3794,7 +3794,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate WH-E"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3811,7 +3811,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate WH-N"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3828,7 +3828,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate WH-S"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3845,7 +3845,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate WH-W"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3939,7 +3939,7 @@
         <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Stage DB to Target DB"
-          TopLeft="321.593735869508,555.947362377249" />
+          TopLeft="322.218735841568,507.368415542215" />
         <NodeLayout
           Size="182.666666666667,42.6666666666667"
           Id="Package\Truncate SSIS Target"
@@ -3952,6 +3952,22 @@
           Size="228,42.6666666666667"
           Id="Package\Truncate WAREHOUSE Target"
           TopLeft="394.249982621522,154.179824056188" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Truncate WH-E"
+          TopLeft="1186.12494722195,180.521929030115" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Truncate WH-N"
+          TopLeft="644.545110321346,160.280701182184" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Truncate WH-S"
+          TopLeft="1010.60412173501,172.729531454855" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Truncate WH-W"
+          TopLeft="828.312463217417,171.969297545074" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="99.6249991897498,198.864033433092">
@@ -4022,18 +4038,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="416.682277874944,487.25876710868">
+          TopLeft="529.104153213713,465.925433775346">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,68.6885952685695"
+              EndConnector="-18.8854173721442,62.7763151002021"
               Start="0,0"
-              End="0,61.1885952685695">
+              End="-11.3854173721442,62.7763151002021">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.1885952685695" />
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,58.7763151002021" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,58.7763151002021"
+                    Point2="22.5,62.7763151002021"
+                    Point3="18.5,62.7763151002021" />
+                  <mssgle:LineSegment
+                    End="-11.3854173721442,62.7763151002021" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4076,22 +4104,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Truncate WH-N"
-          TopLeft="644.545110321346,160.280701182184" />
-        <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Truncate WH-S"
-          TopLeft="1010.60412173501,172.729531454855" />
-        <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Truncate WH-E"
-          TopLeft="1186.12494722195,180.521929030115" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\Truncate WH-W"
-          TopLeft="828.312463217417,171.969297545074" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="721.211776988013,202.947367848851">
@@ -4235,7 +4247,7 @@
     design-time-name="Package\Sales Extract File to Stage DB">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="137.333333333334,42.6666666666667"
           Id="Package\Sales Extract File to Stage DB\Sales Stage"
@@ -4275,9 +4287,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4527,7 +4537,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-45.7612644040539,32.2318295018506,24.287421875,9.5341796875"
+              BoundingBox="-45.7612644040539,32.2318295018506,42.0247265625,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4563,7 +4573,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-199.49808434748,41.59774428846,32.6896484375,9.5732421875"
+              BoundingBox="-199.49808434748,41.59774428846,50.065625,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4599,7 +4609,43 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-352.917119580925,29.0774431832943,33.0783203125,9.5732421875"
+              BoundingBox="-352.917119580925,29.0774431832943,50.815625,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage DB to Target DB.Paths[WEST]"
+          TopLeft="1148.91304939707,516.563904571138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="264.339882695952,81.8646625413247"
+              Start="0,0"
+              End="264.339882695952,74.3646625413247">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.6369955989295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.6369955989295"
+                    Point2="0,24.6369955989295"
+                    Point3="4,24.6369955989295" />
+                  <mssgle:LineSegment
+                    End="260.339882695952,24.6369955989295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="260.339882695952,24.6369955989295"
+                    Point2="264.339882695952,24.6369955989295"
+                    Point3="264.339882695952,28.6369955989295" />
+                  <mssgle:LineSegment
+                    End="264.339882695952,74.3646625413247" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="118.211054629226,29.6369955989295,45.0447265625,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4657,42 +4703,6 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Stage DB to Target DB.Paths[WEST]"
-          TopLeft="1148.91304939707,516.563904571138">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="264.339882695952,81.8646625413247"
-              Start="0,0"
-              End="264.339882695952,74.3646625413247">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.6369955989295" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.6369955989295"
-                    Point2="0,24.6369955989295"
-                    Point3="4,24.6369955989295" />
-                  <mssgle:LineSegment
-                    End="260.339882695952,24.6369955989295" />
-                  <mssgle:CubicBezierSegment
-                    Point1="260.339882695952,24.6369955989295"
-                    Point2="264.339882695952,24.6369955989295"
-                    Point3="264.339882695952,28.6369955989295" />
-                  <mssgle:LineSegment
-                    End="264.339882695952,74.3646625413247" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="118.211054629226,29.6369955989295,27.9177734375,9.5341796875"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
