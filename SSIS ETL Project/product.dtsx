@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="product"
   DTS:PackageType="5"
-  DTS:VersionBuild="120"
-  DTS:VersionGUID="{0C927CBC-3CE2-41FA-B8D0-FAA0AD58E079}">
+  DTS:VersionBuild="139"
+  DTS:VersionGUID="{91E24F16-979C-4268-A916-A94C398C8E39}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1262,6 +1262,65 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\Load to Temp From File and MySQL" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{D684DF2D-C970-4231-A47E-5562089CA699}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F46DED19-C3D6-4EBD-A536-B36D5017D0A2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Execute SQL Task - Error Log 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{49c471e1-262a-41c2-beab-8837015c4c78}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task - Error Log 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{05BAEC21-5EDA-4CEA-941C-D6607151BC17}"
+              SQLTask:SqlStatementSource="INSERT INTO RDW_CFG.ERROR_LOG (BATCH_DATE,PACKAGE_NAME, ERROR_MESSAGE)&#xA;SELECT ?,?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="0" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::CreationDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1367,17 +1426,17 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
           Id="Package\Load to Temp From File and MySQL\Union All"
           TopLeft="422.499981112779,317.473680724728" />
         <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\OLE DB Destination"
-          TopLeft="387.276768401665,410.037589482831" />
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\Product Electonics - MySQL"
+          TopLeft="583.124973932282,129.999998572626" />
         <NodeLayout
           Size="162.666666666667,42.6666666666667"
           Id="Package\Load to Temp From File and MySQL\Product-Furniture"
           TopLeft="358.124983990566,127.298245343585" />
         <NodeLayout
-          Size="213.333333333334,42.6666666666667"
-          Id="Package\Load to Temp From File and MySQL\Product Electonics - MySQL"
-          TopLeft="583.124973932282,129.999998572626" />
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Load to Temp From File and MySQL\OLE DB Destination"
+          TopLeft="387.276768401665,410.037589482831" />
         <NodeLayout
           Size="158.666666666667,42.6666666666667"
           Id="Package\Load to Temp From File and MySQL\Product-Clothing"
@@ -1522,6 +1581,14 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load to Temp From File and MySQL\Product Electonics - MySQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load to Temp From File and MySQL\OLE DB Destination">
     <Properties>
       <Property>
@@ -1534,13 +1601,17 @@ from RDW_STG_PRODUCT_ELECTRONICS</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load to Temp From File and MySQL\Product Electonics - MySQL">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="221.333333333334,42.6666666666667"
+          Id="Package.EventHandlers[OnError]\Execute SQL Task - Error Log 1"
+          TopLeft="830.999975234271,320.666660169761" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

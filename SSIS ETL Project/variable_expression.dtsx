@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="variable_expression"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{DD647125-53AB-46BC-8762-A59F17BBF126}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{737026AA-4B4E-41F7-81FB-53B13924BF8D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -122,7 +122,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{63D56E92-43CD-4233-863A-9E82A8783CCC}"
-      DTS:EvalOp="1"
+      DTS:EvalOp="3"
       DTS:Expression="@[User::product_count]&gt;0"
       DTS:From="Package\Get Product Count"
       DTS:LogicalAnd="True"
