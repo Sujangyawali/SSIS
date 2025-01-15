@@ -12,16 +12,14 @@ The project includes:
 ## Table of Contents
 [Features](#features)\
 [Architecture Diagram](#architecture-diagram)\
-[Overview:](#overview)\
 [Technologies Used](#technologies-used)\
 [Dependencies (Getting Started)](#dependencies-getting-started)\
 [System Requirements](#system-requirements)\
-[Additional Notes:](#additional-notes)\
 [Configuration](#configuration)\
 [Setting Up the Environment](#setting-up-the-environment)\
 [Error Handling and Logging](#error-handling-and-logging)\
-[Enhancement](#enhancement)\
-[Contribution](#contribution)
+[Enhancement](#enhancement)
+
 
 ---
 
@@ -36,7 +34,6 @@ The project includes:
 ---
 
 ## Architecture Diagram
-### Overview:
 Data extracted from **flat files** and **MySQL database**.Transformations applied through **SSIS packages** and **SQL Server stored procedures**. The destination is SQL Server.
 ![Architecture Diagram](SSIS_ETL_Architecture.png)
 
@@ -55,7 +52,6 @@ For Deployment .ispac file is built from Visual Studio and deployed into the SQL
 ---
 
 ## Dependencies (Getting Started)
-### System Requirements
 - **SQL Server** (Standard or higher, includes SSIS):
    - [Download SQL Server](https://www.microsoft.com/en-us/sql-server/)
 - **Microsoft Visual Studio** (with SSIS add-on):
@@ -64,10 +60,9 @@ For Deployment .ispac file is built from Visual Studio and deployed into the SQL
    - [Download MySQL Community Server](https://dev.mysql.com/downloads/)
 - **Flat File Data Sources**:
    - Ensure test files (text and CSV) are structured correctly before running the pipeline.
-
-### Additional Notes:
-- Ensure SQL Server Agent is enabled for scheduling SSIS jobs.
-- Have the necessary permissions to create and manage SSIS catalogs.
+- Additional Notes:
+  - Ensure SQL Server Agent is enabled for scheduling SSIS jobs.
+  - Have the necessary permissions to create and manage SSIS catalogs.
 
 ---
 
